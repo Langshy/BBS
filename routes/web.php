@@ -16,4 +16,13 @@ Route::get('/', function () {
 });
 
 Route::post('Admin/createAdmin','Admin\SessionController@create');
+Route::post('Admin/login','Admin\SessionController@login');
+Route::get('getAllSession','Admin\SessionController@getAllSession');
+Route::get('Admin/loginOut/{id}','Admin\SessionController@loginOut');
+
+
+
+
+//验证邮箱
+Route::get('Admin/confirm_email', 'Admin\SessionController@confirmEmail');
 

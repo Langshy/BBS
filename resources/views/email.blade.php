@@ -1,1 +1,0 @@
-{{$msg}},你的账号激活地址为<a href={{route('signup/confirm'),$token->verif_token}}?username={{$username}}></a>
