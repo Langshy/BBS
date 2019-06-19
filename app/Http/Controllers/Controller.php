@@ -7,7 +7,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Model\User;
+use App\Model\PasswordFind;
 use Illuminate\Http\Request;
+use Mail;
 
 class Controller extends BaseController
 {
@@ -38,8 +40,8 @@ class Controller extends BaseController
         }
     }
 
-    //邮件管理
-    public function sendEmailConfirmationTo($user){
+    //激活邮件发送
+    public function sendEmailConfirmationTo(User $user){
         $view = 'email.admin_email';
         $data = compact('user');
         $from = 'langshy@163.com';
@@ -51,7 +53,7 @@ class Controller extends BaseController
         });
     }
     
-    // 验证邮箱
+    // 验证邮箱激活
     public function confirmEmail(Request $request){
         $token = $request->input('token');
 
@@ -64,5 +66,19 @@ class Controller extends BaseController
 
         echo '邮箱激活成功！';
         return;
+    }
+
+    //忘记密码验证
+    public function sendEmailFindeTo(PasswordFind $password)
+    {
+        $view = 'email.password_email';
+        $data = compact('password');
+        $from = 'langshy@163.com';
+        $name = 'Admin';
+        $to = $password->email;
+        $subject = "请确认你的邮箱。";
+        Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
+            $message->from($from, $name)->to($to)->subject($subject);
+        });
     }
 }

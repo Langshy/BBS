@@ -17,7 +17,7 @@ class CreatePasswordForgetTable extends Migration
             $table->bigIncrements('id');
             $table->string('email')->index();
             $table->string('token');
-            $table->timestamps();
+            $table->integer('create_time');
         });
     }
 

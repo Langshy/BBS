@@ -24,5 +24,8 @@ Route::get('Admin/loginOut/{id}','Admin\SessionController@loginOut');
 
 
 //验证邮箱
-Route::get('Admin/confirm_email', 'Admin\SessionController@confirmEmail');
+Route::get('Admin/confirm_email', 'Admin\SessionController@confirmEmail')->name('confirm_email');
+//密码找回
+Route::post('Admin/password_email','Admin\SessionController@resetPassword');
+Route::get('Admin/confirm_password_email','Admin\SessionController@updatePassword')->name('confirm_password_email');
 

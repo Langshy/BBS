@@ -7,8 +7,8 @@
 <body>
   <p>
     请点击下面的链接完成注册：
-    <a href="{{ route('Admin.confirm_email') }}?token={{$user->verif_token}}">
-    {{ route('Admin.confirm_email') }}?token={{$user->verif_token}}
+    <a href="{{ route('confirm_email') }}?token={{$data->verif_token}}">
+    {{ route('confirm_email') }}?token={{$data->verif_token}}
     </a>
   </p>
 
