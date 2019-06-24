@@ -116,6 +116,10 @@ class SessionController extends Controller
     public function updatePassword(Reuqest $request)
     {
         $token = $request->input('token');
+        if(empty($token)){
+            //返回404页面
+            return;
+        }
         $time = time();
         $info = PasswordFind::where('token',$token)->first();
         if(((int)$time-(int)$info->create_time) > 1800){
